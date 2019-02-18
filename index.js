@@ -14,26 +14,35 @@ function makeItem(item){
       </li>`);
 }
 
-$(function(){
+function handleAddItem(){
   $('#js-shopping-list-form').submit(function(event){
     event.preventDefault();
     const item = $(this).find('#shopping-list-entry').val();
     $('.shopping-list').append(makeItem(item));
     console.log(item);
   });
+}
 
-
+function handleCheckItem(){
   $('ul').on('click', '.shopping-item-toggle', function(event){
     event.preventDefault();
     
     $(this).parent().parent()
       .find('.shopping-item').toggleClass('shopping-item__checked');
   });
+}
 
+function handleDeleteItem(){
   $('ul').on('click', '.shopping-item-delete', function(event){
     event.preventDefault();
 
     $(this).parent().parent().remove();
   });
+}
+
+$(function(){
+  handleAddItem();
+  handleCheckItem();
+  handleDeleteItem();
 });
 
